@@ -5,15 +5,23 @@ import SearchAppointment from './components/Appointments/Search/Search';
 import ListAppointment from './components/Appointments/List/List';
 class App extends Component {
   state ={
-    dogAppointments: []
+    dogAppointments: [],
+    lastIndex: 1
   };
   componentDidMount() {
     fetch('./data.json')
       .then(res => res.json())
       .then(appointmentItems => {
-        console.log('appointment:', appointmentItems);
+        let appointmentItemFinal = appointmentItems.map(item => {
+          item.id = this.state.lastIndex;
+          this.setState({
+            lastIndex: this.state.lastIndex + 1
+          });
+          return item;
+        });
+        console.log('appointment:', appointmentItemFinal);
         this.setState({
-          dogAppointments: appointmentItems
+          dogAppointments: appointmentItemFinal
         });
       })
       .catch(error => {
