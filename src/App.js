@@ -4,6 +4,22 @@ import AddAppointment from './components/Appointments/Add/Add';
 import SearchAppointment from './components/Appointments/Search/Search';
 import ListAppointment from './components/Appointments/List/List';
 class App extends Component {
+  state ={
+    dogAppointments: []
+  };
+  componentDidMount() {
+    fetch('./data.json')
+      .then(res => res.json())
+      .then(appointmentItems => {
+        console.log('appointment:', appointmentItems);
+        this.setState({
+          dogAppointments: appointmentItems
+        });
+      })
+      .catch(error => {
+        console.log('Error', error);
+      })
+  }
   render() {
     return (
       <main className="page bg-white" id="petratings">
@@ -13,7 +29,7 @@ class App extends Component {
             <div className="container">
               <AddAppointment />
               <SearchAppointment />
-              <ListAppointment />
+              <ListAppointment appointments={this.state.dogAppointments}/>
             </div>
           </div>
         </div>
