@@ -17,7 +17,12 @@ class ListAppointment extends Component {
             <div className="pet-info media-body">
               <div className="pet-head d-flex">
                 <span className="pet-name">{item.petName}</span>
-                <span className="apt-date ml-auto">{item.aptDate}</span>
+                <span className="apt-date ml-auto">
+                <Moment
+        date={item.aptDate}
+        parse="YYYY-MM-dd hh:mm"
+        format="MMM-d h:mma"
+        /></span>
               </div>
 
               <div className="owner-name">
