@@ -3,13 +3,15 @@ import { FaTimes } from 'react-icons/fa';
 import Moment from 'react-moment';
 
 class ListAppointment extends Component {
+
   render() {
     return (
       <div className="appointment-list item-list mb-3">
           {this.props.appointments.map(item => (
         <div className="pet-item col media py-3" key={item.id}>
             <div className="mr-3">
-              <button className="pet-delete btn btn-sm btn-danger"> <FaTimes /></button>
+              <button className="pet-delete btn btn-sm btn-danger"
+        onClick={() => this.props.deleteAppointment(item)}> <FaTimes /></button>
             </div>
 
             <div className="pet-info media-body">
